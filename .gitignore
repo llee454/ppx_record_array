@@ -1,0 +1,17 @@
+_build
+_opam
+credentials.json
+
+# MacOS file system auxiliary files
+.DS_Store
+
+# Vim auxiliary files
+*.aux
+*.swp
+*.swo
+
+# Coq auxiliary files
+*.vos
+*.vok
+*.vo
+*.glob
