@@ -19,6 +19,12 @@ let%expect_test "test 1.1" =
   to_array x |> of_array |> [%equal: t] x
   |> printf !"%{sexp: bool}";
   [%expect {| true |}]
+
+let%expect_test "test 1.2" =
+  Record_array.num_fields
+  |> printf !"%{sexp: int}";
+  [%expect {| 3 |}]
+
 end 
 
 module Test2 = struct

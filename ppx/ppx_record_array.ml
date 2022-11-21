@@ -4,6 +4,9 @@ open! Ast_builder.Default
 
 let get_field_spec (ld : label_declaration) = ld.pld_name.txt
 
+let get_num_fields_def ~loc specs =
+  [%stri let num_fields = [%e eint ~loc (List.length specs)]]
+
 let get_to_array_def ~loc specs =
   let rhs = List.map ~f:(evar ~loc) specs |> pexp_array ~loc in
   let pat = ppat_record ~loc (List.map ~f:(fun s -> ({ txt = Lident s; loc = loc }, pvar ~loc s)) specs) Closed in
@@ -27,6 +30,7 @@ let generate_impl ~ctxt (_rec_flag, type_declarations) =
         | { ptype_kind = Ptype_record fields; _ } ->
           let specs = List.map fields ~f:get_field_spec in
           [
+            get_num_fields_def ~loc specs;
             get_to_array_def ~loc specs;
             get_of_array_def ~loc specs
           ])

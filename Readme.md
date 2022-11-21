@@ -33,6 +33,9 @@ Given a record type that only contains float fields and has the
 These functions can be used to efficiently convert the record into and
 arrays and vice versa.
 
+Additionally, `Record_array` defines a constant, `num_fields`, that
+gives the number fields contained in the record/array.
+
 
 ## Initializing the Build Environment
 
